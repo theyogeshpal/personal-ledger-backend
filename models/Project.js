@@ -77,6 +77,10 @@ const ProjectSchema = new mongoose.Schema({
       trim: true
     }
   }],
+  deletedAt: {
+    type: Date,
+    default: null
+  },
   createdAt: {
     type: Date,
     default: Date.now
