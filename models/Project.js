@@ -35,6 +35,10 @@ const ProjectSchema = new mongoose.Schema({
     type: String,
     trim: true
   },
+  repos: [{
+    label: { type: String, trim: true },
+    url: { type: String, trim: true }
+  }],
   backendUrl: {
     type: String,
     trim: true
