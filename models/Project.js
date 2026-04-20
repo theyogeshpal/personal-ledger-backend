@@ -17,7 +17,7 @@ const ProjectSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    enum: ['personal', 'office'],
+    enum: ['personal', 'office', 'freelance'],
     default: 'personal'
   },
   status: {
