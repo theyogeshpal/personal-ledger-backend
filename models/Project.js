@@ -81,6 +81,11 @@ const ProjectSchema = new mongoose.Schema({
       trim: true
     }
   }],
+  credentials: [{
+    label: { type: String, trim: true },
+    username: { type: String, trim: true },
+    password: { type: String, trim: true }
+  }],
   deletedAt: {
     type: Date,
     default: null
