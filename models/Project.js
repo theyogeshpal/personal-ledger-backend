@@ -20,6 +20,14 @@ const ProjectSchema = new mongoose.Schema({
     enum: ['personal', 'office', 'freelance'],
     default: 'personal'
   },
+  amount: {
+    type: Number,
+    default: 0
+  },
+  paymentReceived: {
+    type: Boolean,
+    default: false
+  },
   status: {
     type: String,
     enum: ['active', 'completed', 'on-hold'],

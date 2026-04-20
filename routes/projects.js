@@ -59,11 +59,11 @@ router.post('/', [protect, body('title').notEmpty().withMessage('Title is requir
     const errors = validationResult(req);
     if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
 
-    const { title, description, category, status, progress, githubUrl, repos, backendUrl, frontendUrl, liveLinks, credentials, tags, startDate, endDate } = req.body;
+    const { title, description, category, status, progress, githubUrl, repos, backendUrl, frontendUrl, liveLinks, credentials, amount, paymentReceived, tags, startDate, endDate } = req.body;
 
     const project = await Project.create({
       user: req.user._id, title, description, category, status, progress,
-      githubUrl, repos, backendUrl, frontendUrl, liveLinks, credentials, tags, startDate, endDate
+      githubUrl, repos, backendUrl, frontendUrl, liveLinks, credentials, amount, paymentReceived, tags, startDate, endDate
     });
     res.status(201).json(project);
   } catch (error) {
@@ -74,7 +74,7 @@ router.post('/', [protect, body('title').notEmpty().withMessage('Title is requir
 // PUT /api/projects/:id — update
 router.put('/:id', [protect, body('title').optional().notEmpty().withMessage('Title cannot be empty')], async (req, res) => {
   try {
-    const { title, description, category, status, progress, githubUrl, repos, backendUrl, frontendUrl, liveLinks, credentials, tags, startDate, endDate } = req.body;
+    const { title, description, category, status, progress, githubUrl, repos, backendUrl, frontendUrl, liveLinks, credentials, amount, paymentReceived, tags, startDate, endDate } = req.body;
 
     let project = await Project.findById(req.params.id);
     if (!project) return res.status(404).json({ message: 'Project not found' });
@@ -82,7 +82,7 @@ router.put('/:id', [protect, body('title').optional().notEmpty().withMessage('Ti
 
     project = await Project.findByIdAndUpdate(
       req.params.id,
-      { title, description, category, status, progress, githubUrl, repos, backendUrl, frontendUrl, liveLinks, credentials, tags, startDate, endDate },
+      { title, description, category, status, progress, githubUrl, repos, backendUrl, frontendUrl, liveLinks, credentials, amount, paymentReceived, tags, startDate, endDate },
       { new: true, runValidators: true }
     );
     res.json(project);
